@@ -2,67 +2,68 @@ from flask_restful import Resource, reqparse, abort
 
 from flask import jsonify
 
-from src.models.hoge import HogeModel, HogeSchema
+from src.models.users import UsersModel, UsersSchema
 
 from src.database import db
 
 
-class HogeListAPI(Resource):
+class UsersListAPI(Resource):
   def __init__(self):
     self.reqparse = reqparse.RequestParser()
     self.reqparse.add_argument('name', required=True)
     self.reqparse.add_argument('state', required=True)
-    super(HogeListAPI, self).__init__()
+    super(UsersListAPI, self).__init__()
 
 
   def get(self):
-    results = HogeModel.query.all()
-    jsonData = HogeSchema(many=True).dump(results).data
+    results = UsersModel.query.all()
+    print(UsersSchema(many=True).dump(results))
+    jsonData = UsersSchema(many=True).dump(results)
     return jsonify({'items': jsonData})
 
 
   def post(self):
     args = self.reqparse.parse_args()
-    hoge = HogeModel(args.name, args.state)
-    db.session.add(hoge)
+    users = UsersModel(args.name, args.state)
+    db.session.add(users)
     db.session.commit()
-    res = HogeSchema().dump(hoge).data
+    res = UsersSchema().dump(users).data
     return res, 201
 
 
-class HogeAPI(Resource):
+class UsersAPI(Resource):
   def __init__(self):
     self.reqparse = reqparse.RequestParser()
     self.reqparse.add_argument('name')
     self.reqparse.add_argument('state')
-    super(HogeAPI, self).__init__()
+    super(UsersAPI, self).__init__()
 
 
   def get(self, id):
-    hoge = db.session.query(HogeModel).filter_by(id=id).first()
-    if hoge == None:
+    users = db.session.query(UsersModel).filter_by(id=id).first()
+    if users == None:
       abort(404)
 
-    res = HogeSchema().dump(hoge).data
+    res = UsersSchema().dump(users)
     return res
 
 
   def put(self, id):
-    hoge = db.session.query(HogeModel).filter_by(id=id).first()
-    if hoge == None:
+    users = db.session.query(UsersModel).filter_by(id=id).first()
+    if users == None:
       abort(404)
     args = self.reqparse.parse_args()
     for name, value in args.items():
       if value is not None:
-        setattr(hoge, name, value)
-    db.session.add(hoge)
+        setattr(users, name, value)
+    db.session.add(users)
     db.session.commit()
     return None, 204
 
 
   def delete(self, id):
-    hoge = db.session.query(HogeModel).filter_by(id=id).first()
-    if hoge is not None:
-      db.session.delete(hoge)
+    users = db.session.query(UsersModel).filter_by(id=id).first()
+    if users is not None:
+      db.session.delete(users)
       db.session.commit()
     return None, 204

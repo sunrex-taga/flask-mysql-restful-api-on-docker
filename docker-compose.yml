@@ -13,10 +13,10 @@ services:
       FLASK_APP: run.py
       FLASK_ENV: development
     command: flask run -h 0.0.0.0
-  db:
-    build: ./mysql/
-    volumes:
-      - ./mysql/mysql_data:/var/lib/mysql
-      - ./mysql/sqls:/docker-entrypoint-initdb.d
-    environment:
-      - MYSQL_ROOT_PASSWORD=hoge
+  # db:
+  #   build: ./mysql/
+  #   volumes:
+  #     - ./mysql/mysql_data:/var/lib/mysql
+  #     - ./mysql/sqls:/docker-entrypoint-initdb.d
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=hoge
