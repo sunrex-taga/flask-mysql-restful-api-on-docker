@@ -19,7 +19,7 @@ class UsersListAPI(Resource):
     results = UsersModel.query.all()
     print(UsersSchema(many=True).dump(results))
     jsonData = UsersSchema(many=True).dump(results)
-    return jsonify({'items': jsonData})
+    return jsonify({'res': jsonData})
 
 
   def post(self):
@@ -45,7 +45,8 @@ class UsersAPI(Resource):
       abort(404)
 
     res = UsersSchema().dump(users)
-    return res
+    return jsonify({'res': res})
+    # return res
 
 
   def put(self, id):

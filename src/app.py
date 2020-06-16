@@ -5,6 +5,7 @@ from flask_restful import Api
 from src.database import init_db
 
 from src.apis.users import UsersListAPI, UsersAPI
+from src.apis.rooms import RoomsListAPI, RoomsAPI
 
 
 def create_app():
@@ -18,6 +19,8 @@ def create_app():
   api = Api(app)
   api.add_resource(UsersListAPI, '/users')
   api.add_resource(UsersAPI, '/users/<id>')
+  api.add_resource(RoomsListAPI, '/rooms')
+  api.add_resource(RoomsAPI, '/rooms/<id>')
 
   return app
 
