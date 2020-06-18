@@ -6,7 +6,7 @@ from src.database import init_db
 
 from src.apis.users import UsersListAPI, UsersAPI
 from src.apis.rooms import RoomsListAPI, RoomsAPI
-
+from src.apis.schedules import SchedulesListAPI, SchedulesAPI
 
 def create_app():
 
@@ -21,6 +21,8 @@ def create_app():
   api.add_resource(UsersAPI, '/users/<id>')
   api.add_resource(RoomsListAPI, '/rooms')
   api.add_resource(RoomsAPI, '/rooms/<id>')
+  api.add_resource(SchedulesListAPI, '/schedules')
+  api.add_resource(SchedulesAPI, '/schedules/<id>')
 
   return app
 

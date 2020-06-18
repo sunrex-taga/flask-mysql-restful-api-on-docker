@@ -18,8 +18,8 @@ class UsersModel(db.Model):
   __table_args__ = {'extend_existing': True}
 
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-  name = db.Column(db.String(255), nullable=False)
-  state = db.Column(db.String(255), nullable=False)
+  name = db.Column(db.String(30), nullable=False)
+  state = db.Column(db.String(30), nullable=False)
 
   createTime = db.Column(db.DateTime, nullable=False, default=datetime.now)
   updateTime = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)

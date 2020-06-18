@@ -18,7 +18,7 @@ class RoomsModel(db.Model):
   __table_args__ = {'extend_existing': True}
 
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-  name = db.Column(db.String(255), nullable=False)
+  name = db.Column(db.String(20), nullable=False)
   # map_image = db.Column(db.String(255), nullable=False)
 
   createTime = db.Column(db.DateTime, nullable=False, default=datetime.now)
