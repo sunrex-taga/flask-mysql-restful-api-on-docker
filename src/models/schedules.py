@@ -23,16 +23,20 @@ class SchedulesModel(db.Model):
   users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
   reserved_person = db.Column(db.String(30), nullable=False)
   title = db.Column(db.String(50), nullable=False)
+  started_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
+  ended_at = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
   createTime = db.Column(db.DateTime, nullable=False, default=datetime.now)
   updateTime = db.Column(db.DateTime, nullable=False, default=datetime.now, onupdate=datetime.now)
 
-  def __init__(self, rooms_id, rooms_name, users_id, reserved_person, title):
+  def __init__(self, rooms_id, rooms_name, users_id, reserved_person, title, started_at, ended_at):
     self.rooms_id = rooms_id
     self.rooms_name = rooms_name
     self.users_id = users_id
     self.reserved_person = reserved_person
     self.title = title
+    self.started_at = started_at
+    self.ended_at = ended_at
 
 
   def __repr__(self):
