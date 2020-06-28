@@ -17,7 +17,6 @@ class UsersListAPI(Resource):
 
   def get(self):
     results = UsersModel.query.all()
-    print(UsersSchema(many=True).dump(results))
     jsonData = UsersSchema(many=True).dump(results)
     return jsonify({'res': jsonData})
 

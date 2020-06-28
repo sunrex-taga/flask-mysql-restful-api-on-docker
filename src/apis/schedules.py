@@ -15,8 +15,8 @@ class SchedulesListAPI(Resource):
     self.reqparse.add_argument('users_id', required=True)
     self.reqparse.add_argument('reserved_person')
     self.reqparse.add_argument('title', required=True)
-    self.reqparse.add_argument('createTime')
-    self.reqparse.add_argument('updateTime')
+    # self.reqparse.add_argument('createTime')
+    # self.reqparse.add_argument('updateTime')
     super(SchedulesListAPI, self).__init__()
 
 

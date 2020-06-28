@@ -7,6 +7,7 @@ from src.database import init_db
 from src.apis.users import UsersListAPI, UsersAPI
 from src.apis.rooms import RoomsListAPI, RoomsAPI
 from src.apis.schedules import SchedulesListAPI, SchedulesAPI
+from src.apis.roominfo import RoomInfoListAPI, RoomInfoAPI
 
 def create_app():
 
@@ -23,6 +24,8 @@ def create_app():
   api.add_resource(RoomsAPI, '/rooms/<id>')
   api.add_resource(SchedulesListAPI, '/schedules')
   api.add_resource(SchedulesAPI, '/schedules/<id>')
+  api.add_resource(RoomInfoListAPI, '/roominfo')
+  api.add_resource(RoomInfoAPI, '/roominfo/<id>')
 
   return app
 
