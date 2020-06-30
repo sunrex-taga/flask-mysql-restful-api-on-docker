@@ -3,9 +3,9 @@ from flask_restful import Resource, reqparse, abort
 from flask import jsonify
 
 from src.models.roominfo import RoomInfoModel, RoomInfoSchema
+from src.models.rooms import RoomsModel, RoomsSchema
 
 from src.database import db
-
 
 class RoomInfoListAPI(Resource):
   def __init__(self):
@@ -17,7 +17,10 @@ class RoomInfoListAPI(Resource):
 
   def get(self):
     results = RoomInfoModel.query.all()
+    # results = db.session.query(RoomInfoModel, RoomsModel).join(RoomsModel, RoomsModel.id==RoomInfoModel.rooms_id).all()
+    # print(results)
     jsonData = RoomInfoSchema(many=True).dump(results)
+    # print(jsonData)
     return jsonify({'res': jsonData})
 
 
@@ -40,6 +43,7 @@ class RoomInfoAPI(Resource):
 
   def get(self, id):
     roominfo = db.session.query(RoomInfoModel).filter_by(id=id).first()
+    # roominfo = db.session.query(RoomInfoModel, RoomsModel).join(RoomsModel, RoomsModel.id == RoomInfoModel.rooms_id).filter_by(id=id).first()
     if roominfo == None:
       abort(404)
 

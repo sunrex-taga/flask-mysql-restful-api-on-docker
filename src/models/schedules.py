@@ -15,7 +15,7 @@ ma = Marshmallow()
 
 class SchedulesModel(db.Model):
   __tablename__ = 'schedules'
-  __table_args__ = {'extend_existing': True}
+  # __table_args__ = {'extend_existing': True}
 
   id = db.Column(db.Integer, primary_key=True, autoincrement=True)
   rooms_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
@@ -47,10 +47,7 @@ class SchedulesSchema(ma.SQLAlchemyAutoSchema):
   class Meta:
     model = SchedulesModel
     load_instance = True
-
-# class SchedulesSchema(ma.ModelSchema):
-#   class Meta:
-#     model = SchedulesModel
+    include_fk = True
 
   createTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
   updateTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')

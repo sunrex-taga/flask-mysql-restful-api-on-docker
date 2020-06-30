@@ -31,15 +31,15 @@ class RoomsModel(db.Model):
   def __repr__(self):
     return '<RoomsModel {}:{}>'.format(self.id, self.name)
 
+class Rooms2Schema(ma.Schema):
+    class Meta:
+        # Fields to expose
+        fields = ("id", "name", "id2", "rooms_id", "data")
 
 class RoomsSchema(ma.SQLAlchemyAutoSchema):
   class Meta:
     model = RoomsModel
     load_instance = True
-
-# class RoomsSchema(ma.ModelSchema):
-#   class Meta:
-#     model = RoomsModel
 
   createTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
   updateTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')

@@ -30,13 +30,23 @@ class RoomInfoModel(db.Model):
 
 
   def __repr__(self):
-    return '<RoomInfoModel {}:{}>'.format(self.id, self.data)
+    return '<RoomInfoModel {}:{}:{}>'.format(self.id, self.rooms_id, self.data)
 
+# class RoomsSchema(ma.SQLAlchemyAutoSchema):
+#   class Meta:
+#     model = RoomsModel
+#     load_instance = True
+
+# class RoomInfoWithRoomsSchema(ma.SQLAlchemyAutoSchema):
+#   class Meta:
+
+#     model = RoomInfoModel
 
 class RoomInfoSchema(ma.SQLAlchemyAutoSchema):
   class Meta:
     model = RoomInfoModel
     load_instance = True
+    # include_fk = True
 
 # class RoomInfoSchema(ma.ModelSchema):
 #   class Meta:
