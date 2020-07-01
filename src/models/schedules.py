@@ -40,7 +40,7 @@ class SchedulesModel(db.Model):
 
 
   def __repr__(self):
-    return '<SchedulesModel {}:{}>'.format(self.id, self.rooms_name)
+    return '<SchedulesModel {}:{}:{}:{}>'.format(self.id, self.rooms_id, self.started_at, self.ended_at)
 
 
 class SchedulesSchema(ma.SQLAlchemyAutoSchema):

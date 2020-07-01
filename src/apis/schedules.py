@@ -21,8 +21,7 @@ class SchedulesListAPI(Resource):
 
 
   def get(self):
-    results = SchedulesModel.query.all()
-    # print(SchedulesSchema(many=True).dump(results))
+    results = SchedulesModel.query.order_by(SchedulesModel.rooms_id, SchedulesModel.started_at).all()
     jsonData = SchedulesSchema(many=True).dump(results)
     return jsonify({'res': jsonData})
 
