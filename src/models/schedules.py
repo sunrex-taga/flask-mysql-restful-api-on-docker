@@ -51,3 +51,5 @@ class SchedulesSchema(ma.SQLAlchemyAutoSchema):
 
   createTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
   updateTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
+  started_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')
+  ended_at = fields.DateTime('%Y-%m-%dT%H:%M:%S')

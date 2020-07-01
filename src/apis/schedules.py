@@ -15,8 +15,8 @@ class SchedulesListAPI(Resource):
     self.reqparse.add_argument('users_id', required=True)
     self.reqparse.add_argument('reserved_person')
     self.reqparse.add_argument('title', required=True)
-    # self.reqparse.add_argument('createTime')
-    # self.reqparse.add_argument('updateTime')
+    self.reqparse.add_argument('started_at')
+    self.reqparse.add_argument('ended_at')
     super(SchedulesListAPI, self).__init__()
 
 
@@ -29,7 +29,7 @@ class SchedulesListAPI(Resource):
 
   def post(self):
     args = self.reqparse.parse_args()
-    schedules = SchedulesModel(args.rooms_id, args.rooms_name, args.users_id, args.reserved_person, args.title)
+    schedules = SchedulesModel(args.rooms_id, args.rooms_name, args.users_id, args.reserved_person, args.title, args.started_at, args.ended_at)
     db.session.add(schedules)
     db.session.commit()
     res = SchedulesSchema().dump(schedules)
@@ -44,6 +44,8 @@ class SchedulesAPI(Resource):
     self.reqparse.add_argument('users_id')
     self.reqparse.add_argument('reserved_person')
     self.reqparse.add_argument('title')
+    self.reqparse.add_argument('started_at')
+    self.reqparse.add_argument('ended_at')
     super(SchedulesAPI, self).__init__()
 
 
